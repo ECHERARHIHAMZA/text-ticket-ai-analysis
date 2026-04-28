@@ -1,4 +1,5 @@
 import json
+from preprocessing import clean_text, tokenize
 
 
 def load_data(path):
@@ -15,6 +16,9 @@ if __name__ == "__main__":
     data = load_data("data/data.json")
     texts = extract_texts(data)
 
-    print("=== Tickets ===")
+    print("=== Prétraitement des tickets ===")
     for text in texts:
-        print("-", text)
+        print("Texte original :", text)
+        print("Texte nettoyé :", clean_text(text))
+        print("Mots :", tokenize(text))
+        print()
