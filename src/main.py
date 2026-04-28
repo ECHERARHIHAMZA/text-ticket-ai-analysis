@@ -1,6 +1,6 @@
 import json
 from preprocessing import clean_text, tokenize
-
+from classification import classify
 
 def load_data(path):
     with open(path, "r", encoding="utf-8") as file:
@@ -16,9 +16,11 @@ if __name__ == "__main__":
     data = load_data("data/data.json")
     texts = extract_texts(data)
 
-    print("=== Prétraitement des tickets ===")
-    for text in texts:
-        print("Texte original :", text)
-        print("Texte nettoyé :", clean_text(text))
-        print("Mots :", tokenize(text))
-        print()
+    print("=== Classification des tickets ===")
+
+for text in texts:
+    category = classify(text)
+
+    print("Texte :", text)
+    print("Catégorie :", category)
+    print()
