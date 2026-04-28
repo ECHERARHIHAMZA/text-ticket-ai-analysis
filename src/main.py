@@ -1,6 +1,7 @@
 import json
 from preprocessing import clean_text, tokenize
 from classification import classify
+from analysis import count_categories
 
 def load_data(path):
     with open(path, "r", encoding="utf-8") as file:
@@ -24,3 +25,9 @@ for text in texts:
     print("Texte :", text)
     print("Catégorie :", category)
     print()
+print("=== Analyse des catégories ===")
+
+stats = count_categories(texts, classify)
+
+for category, count in stats.items():
+    print(f"{category} : {count}")
