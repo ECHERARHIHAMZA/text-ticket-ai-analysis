@@ -2,8 +2,7 @@ import json
 from preprocessing import clean_text, tokenize
 from classification import classify
 from analysis import count_categories
-from ml_model import train_model, predict_category
-
+from ml_model import train_model, predict_category, evaluate_model
 
 def load_data(path):
     with open(path, "r", encoding="utf-8") as file:
@@ -44,3 +43,8 @@ if __name__ == "__main__":
         print("Texte :", text)
         print("Prédiction ML :", prediction)
         print()
+        print("=== Évaluation du modèle ===")
+    accuracy, report = evaluate_model(texts, labels)
+
+    print("Accuracy :", accuracy)
+    print(report)
